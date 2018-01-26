@@ -1,0 +1,33 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+Going back to Alice's jewellery store, Alice orders a bulk of glove boxes from Acme Glovebox Company to test out her idea. Unfortunately for Alice, all the glove boxes turn out to be defective! The glove boxes can only be used for a few minutes before the gloves stiffen and become unusable. Alice files a complaint and is promised a replacement of her order to arrive in a few weeks. While waiting for her order, Alice decides to make use of what she has. Alice realizes that the glove boxes have a one way opening which can be used by her workers to insert material into the box. Being the smart person she is, it only takes her a few minutes to figure out how she can use that property to come up with a possible solution to her problem. 
+
+Alice gives her worker a couple of glove boxes. The first glove box, labelled box $\#1$, contains the raw material; the second glove box, labelled box $\#2$, contains the key to box $\#1$; the third glove box, labelled box $\#3$, contains the key to box $\#2$ and so on. The worker first uses the gloves of box $\#1$ to work on the raw material. When the gloves of box $\#1$ stiffen and become unusable, he takes box $\#1$ and inserts it into box $\#2$. Then he uses the gloves of box $\#2$ to use the the key inside the box to open box $\#1$, extract the somewhat assembled raw material and continue to work on assembling it. When the gloves of box $\#2$ stiffen, the worker moves on to box $\#3$ in a similar fashion. When the worker finishes assembling the raw material (in box $\#n$), he hands box $\#n$ to Alice and Alice uses her secret key to open it and retrieve the diamond. Alice observes that with the right amount of glove boxes and the ability to unlock the box and do a bit of assembly work within the useful time frame of the box, Alice can assemble any precious diamond she wants!
+
+The first step of Gentry's scheme [2] is to describe a Somewhat Homomorphic Encryption (SWHE) scheme which supports a limited number of additions and multiplications. Each ciphertext carries a noise component which is increased with every homomorphic operation. When the noise becomes too large, the ciphertexts no longer decrypt properly. In the above analogy our SWHE scheme is represented by the defective boxes, where Alice can assemble the raw material only for a limited amount of time before the gloves stiffen.
+
+The second step is to convert the SWHE scheme to a FHE scheme. This is exactly what Alice was trying to do when she stored the raw material in box $\#1$ and for every other box $\#(i+1)$, she stored the key to open the previous box $\#i$. In order for this to work, the SWHE scheme must be able to handle the decryption function. If the SWHE scheme is capable of handling its own decryption function, we say that the scheme is bootstrappable. If the encryption scheme is bootstrappable then we can convert it to a fully homomorphic encryption scheme.
+
+This report does not cover how to convert a bootstrappable scheme into a FHE scheme. For more information on this topic refer to [5].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

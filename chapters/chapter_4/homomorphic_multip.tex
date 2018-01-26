@@ -1,0 +1,56 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+\noindent Let $c_1$ and $c_2$ be two Type-I ciphertexts with noise length $(\rho,\rho^*)$. Then,
+
+\begin{equation*}
+    c_1 = r_1 + (m_1 + 2r^*_1) \cdot (p-1)/2 + q_1 \cdot p^2
+\end{equation*}
+
+\begin{equation*}
+    c_2 = r_2 + (m_2 + 2r^*_2) \cdot (p-1)/2 + q_2 \cdot p^2
+\end{equation*}
+
+\noindent with noises $r_1$ and $r_2$ of respective bit length $\rho$ and, $r^*_1$ and $r^*_2$ of respective bit length $\rho^*$.\\
+
+\noindent Homomorphic multiplication is done as follows.
+\begin{equation*}
+    \begin{split}
+        c_3 &= 2 \cdot c_1 \cdot c_2 \\
+            &= 2 \left(r_1 + (m_1 + 2r^*_1) \cdot (p-1)/2 + q_1 \cdot p^2\right) \cdot \left(r_2 + (m_2 + 2r^*_2) \cdot (p-1)/2 + q_2 \cdot p^2\right) \\
+            &= 2r_1 \cdot r_2 + (r_1(m_2 + 2r^*_2) + r_2(m_1 + 2r^*_1))\cdot (p-1)\\
+            & \quad + (m_1 + 2r^*_1)\cdot(m_2 + 2r^*_2)\cdot(p-1)^2/2\\
+            & \quad + (2r_1q_2 + q_2(m_1+2r^*_1)\cdot(p-1)
+              + 2r_2q_1 + q_1(m_2 + 2r^*_2)\cdot(p-1)+2q_1q_2p^2)\cdot p^2\\
+            &= (2r_1r_2 + (r_1(m_2 + 2r^*_2) + r_2(m_1 + 2r^*_1))(p-1))\\
+            & \quad + (m_1+2r^*_1)(m_2+2r^*_2)\cdot(p-1)^2/2 + q'_3p^2\\
+            &= r'_3 + (m_1 + 2r^*_1)(m_2 + 2r^*_2)\cdot(p-1)^2/2 + q'_3p^2
+    \end{split}
+\end{equation*}
+    
+\noindent for some $r'_3, q'_3 \in \mathbb{Z}$ with $log_2|r'_3| \leq \eta + \rho + \rho^* + 3$. Then we have
+
+\begin{equation*}
+   \begin{split}
+       c_3 &= r'_3 + (m_1m_2 + (2m_1r^*_2 + 2m_2r^*_1 + 4r^*_1r^*_2))\cdot ((p^2-1)/2-(p-1)) + q'_3p^2 \\
+           &= r'_3 + m_1m_2\cdot (p^2-1)/2 - m_1m_2\cdot(p-1) + (2m_1r^*_2 + 2m_2r^*_1 + 4r^*_1r^*_2)\cdot (p^2-1)/2 \\
+           & \quad - (2m_1r^*_2 + 2m_2r^*_1 + 4r^*_1r^*_2)\cdot(p-1)+q'_3p^2\\
+           &= r'_3 + m_1m_2\cdot (p^2-1)/2 - m_1m_2(p-1) \\
+           & \quad + ((m_1r^*_2+m_2r^*_1+2r^*_1r^*_2)\cdot p^2 - (m_1r^*_2 + m_2r^*_1 + 2r^*_1r^*_2))\\
+           & \quad - (2m_1r^*_2 + 2m_2r^*_1+4r^*_1r^*_2)\cdot (p-1) + q'_3p^2 \\
+           &= ((r'_3 - m_1m_2\cdot (p-1) - (m_1r^*_2 + m_2r^*_1 + 2r^*_1r^*_2))\\
+           & \quad -  (2m_1r^*_2+2m_2r^*_1+4r^*_1r^*_2)\cdot (p-1))\\
+           & \quad + m_1m_2\cdot (p^2-1)/2 + ((m_1r^*_2+m_2r^*_1+2r^*_1r^*_2)+q'_3)\cdot p^2\\
+           &= r_3 + m_3\cdot (p^2-1)/2+q_3\cdotp^2
+   \end{split}
+\end{equation*}
+
+\noindent For some integers $r_3,q_3,m_3 = m_1m_2$ where $log_2|r_3| \leq \eta + \rho + \rho^* + 4$ assuming $\rho^* < \rho$. Coron, et al., call a ciphertext of this form a Type II ciphertext. In order to convert a Type II ciphertext back to a Type I ciphertext we use the following Lemma.
+
+\begin{lemma}
+Let $\rho'$ be such that $\rho' \geq \eta + \rho + log_2(\eta\theta)$. The procedure $Convert$ converts a Type-II ciphertext with noise size $\rho'$ into a Type-I ciphertext with noise $(\rho' - \eta + 5, log_2\theta)$. $[7]$
+\end{lemma}
+
+\noindent\textit{Proof}. The proof is presented in the next section by evaluating the $Convert$ procedure. $\blacksquare$
+
+\end{document}

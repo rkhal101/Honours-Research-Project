@@ -1,0 +1,34 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{defn}[Pairwise Independent]
+Let $H$ represent a family of hash functions from $X$ to $Y$ where $X$ and $Y$ are both finite sets. If for every distinct $x,x' \in X$ we have
+\begin{equation*}
+    Pr_{h \leftarrow H}[h(x) = h(x')] = 1/|Y|
+\end{equation*}
+
+\noindent then $H$ is said to be pairwise independent. $[7]$
+\end{defn}
+
+\begin{defn}[Statistical Distance]
+Let $D_1$ and $D_2$ be two distributions over a finite domain $X$. Then,
+\begin{equation*}
+  \triangle (D_1,D_2)= 1/2\sum_{x \in X}^{}|D_1(x)-D_2(x)|
+\end{equation*}
+\noindent where $\triangle(D_1,D_2)$ represents the statistical distance. $[7]$
+\end{defn}
+
+\begin{defn}[$\epsilon$-uniform]
+If the statistical distance of a distribution $D$ from the uniform distribution is at most $\epsilon$, the distribution is said to be $\epsilon$-uniform.$[7]$
+\end{defn}
+
+\begin{lemma}[Leftover Hash Lemma]
+Let $H$ be a family of pairwise independent hash functions from $X$ to $Y$. Suppose that $h \leftarrow H$ and $x \leftarrow X$ are chosen uniformly and independently. Then, $(h,h(x))$ is $1/2\sqrt{|X|/|Y|}$-uniform over $H \times X$. $[7]$
+\end{lemma}
+
+\begin{lemma}
+Set $x_1,...,x_m \leftarrow \mathbb{Z}_M$ uniformly and independently, set $s_1,..,s_m\leftarrow\{0,1\}$, and set $y=\sum_{i=1}^{m}s_i\cdot x_i \mod M$. Then $(x_1,...,x_m,y)$ is $1/2\sqrt{M/2^m}$-uniform over $\mathbb{Z}^{m+1}_M$. $[7]$
+\end{lemma}
+
+\end{document}

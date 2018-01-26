@@ -1,0 +1,64 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+\noindent We prove the semantic security of this scheme by reducing it to the hardness of the Decisional-Approximate-GCD problem. \\
+
+\noindent Recall that $D^\rho_{p,q_0}=\{q \cdot p^2 + r : q \in \mathbb{Z} \cap [0,q_0), r \in \mathbb{Z} \cap (-2^\rho, 2^\rho)\}$. The variant of the Decisional-Approximate-GCD problem is defined as follows:
+
+\begin{addmargin}[1em]{2em}% 1em left, 2em right
+\begin{defn} ($(\rho,\eta,\gamma)-$Decisional-Approximate-GCD)
+Let $p$ be a random odd integer of $\eta$ bits, $q_0$ an integer uniformly distributed in $[0,2^\gamma/p^2)$, $r_0$ an integer uniformly distributed in $(-2^\rho,2^\rho)$. Given $x_0 = q_0 \cdot p^2 + r_0$, polynomially many samples from $D^\rho_{p,q_0}$ and $y \leftarrow D^\rho_{p,q_0} + (p-1)/2$, determine $b \in \{0,1\}$ from $c=x+b \cdot r \mod x_0$ where $x \leftarrow D^\rho_{p,q_0}$ and $r \leftarrow [0,x_0) \cap \mathbb{Z}$. $[7]$
+\end{defn}
+\end{addmargin} 
+\medskip
+\noindent As described in [7] we use the following theorem to provide a proof of semantic security for this scheme. This theorem only considers a subset of the scheme without the procedure $Convert$ (without parameters $z$ and $\sigma$). In order to prove the semantic security of the full scheme, simply add the parameters $z$ and $\sigma$ to the above definition.
+
+\begin{addmargin}[1em]{2em}% 1em left, 2em right
+\begin{thm}
+The above scale invariant DGHV scheme without the parameters $z$ and $\sigma$ is semantically secure under the $(\rho,\eta,\gamma)$-Decisional-Approximate-GCD assumption. $[7]$
+\end{thm}
+\end{addmargin}
+\medskip
+\noindent Before we proceed with the proof of Theorem 4.4.2, we list the following lemma which will be needed in our proof.
+
+\begin{addmargin}[1em]{2em}% 1em left, 2em right
+\begin{lemma}
+For the parameters $(\rho,\eta,\gamma)$, let $pk = (x_0, \{x_i\}_i, y)$ and $sk=p$ be chosen as in the $KeyGen$ procedure. Define $pk'=(x_0,\{x'_i\}_i,y)$ for $x'_i$ uniformly generated in $[0,x_0)$. Then $pk$ and $pk'$ are indistinguishable under the Decisional-Approximate-GCD assumption. $[7]$
+\end{lemma}
+\end{addmargin}
+\medskip
+\noindent In other words, this lemma shows that if you are capable of distinguishing public key elements from elements randomly sampled in $[0,x_0)$, then you are capable of solving the Approximate-GCD problem. Therefore, it must be that the public key elements and elements randomly sampled in $[0,x_0)$ are indistinguishable. The proof of this Lemma is provided in Appendix B. \\
+
+\noindent\textit{Proof}. (Theorem 4.4.2)\\
+
+\noindent\textbf{Game 0.} This is the original attack game described in Section 3.1. The challenger generates a random key pair $(pk,sk) \leftarrow KeyGen(1^\lambda)$ and sends the public key $pk$ to the attacker $A$. The attacker sends $m_0$, $m_1$ to the challenger. The challenger then generates a random bit, $b \leftarrow {0,1}$ and the ciphertext $c \leftarrow Encrypt(pk,m_b)$. The attacker then outputs $b' \in \{0,1\}$. We define $S_0$ to be the event that $b=b'$ in Game 0.\\
+
+\noindent\textbf{Game 1.} This is a transition based on indistinguishability. We uniformly draw elements in $[0,x_0)$ and replace the $x_i$'s in the public key with these elements. We apply the same game scenario except with the uniformly drawn elements and set $S_1$ to be the event that, $b=b'$ in Game 1. Using Lemma 4.4.3, we get
+
+\begin{equation}
+    |Pr[S_1]-Pr[S_0]| \leq \tau \cdot \varepsilon_{dagcd}
+\end{equation}
+
+\noindent where $\varepsilon_{dagcd} = \epsilon / \tau$ is the advantage we obtained in the proof of Lemma 4.4.3. Note that  $\varepsilon_{dagcd}$ is negligible by the Approximate-GCD assumption.\\
+
+\noindent\textbf{Game 2.} This is also a transition based on indistinguishability. In this game we apply the same game scenario except that we replace the ciphertext given to the attacker with a uniform integer modulo $x_0$. This completely removes any information given to the attacker on $b$. Let $S_2$ be the event that $b=b'$ in Game 2. It is clear that $Pr[S_2]=1/2$, since the attacker has no information on $b$ and therefore only has a 50\% chance of choosing the correct value. Now, using the Leftover Hash Lemma (Lemma 2.4.5) we have $\sum\nolimits_{i \in S} x_i \mod x_0$ is $\varepsilon$-statistically indistinguishable from the uniform distribution modulo $x_0$ with $\varepsilon = 2^{(\gamma - \tau)/2}$. \\
+
+\noindent Therefore, we have
+
+\begin{equation}
+    |Pr[S_2]-Pr[S_1]| \leq \varepsilon.
+\end{equation}
+
+\noindent Note that $\varepsilon$ is made negligible if the constraints in Section 4.1 are followed. Combining (1) and (2) we get:
+
+\begin{equation*}
+    \begin{split}
+        |Pr[S_2]-Pr[S_0]| &= |Pr[S_2]-Pr[S_1]+Pr[S_1]-Pr[S_0]| \\
+                          &= |Pr[S_2]-Pr[S_1]| + |Pr[S_1]-Pr[S_0]| \qquad (\triangle-inequality) \\
+                          &= \varepsilon + \tau \cdot \varepsilon_{dagcd}
+    \end{split}
+\end{equation*}
+
+\noindent Since $Pr[S_2] = 1/2$, we have $|Pr[S_0]| \leq 1/2 + \varepsilon + \tau \varepsilon_{dagcd}$. Thus, the attacker has negligible advantage in winning Game 0 (i.e. in breaking this encryption scheme) and therefore, the scheme is semantically secure. $\blacksquare$
+
+\end{document}

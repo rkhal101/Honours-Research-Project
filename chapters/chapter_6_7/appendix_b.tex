@@ -1,0 +1,16 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{lemma}
+For the parameters $(\rho, \eta, \gamma)$, let $pk = (x_0, \{x_i\}_i, y)$ and $sk=p$ be chosen as in the KeyGen procedure. Define $pk'=(x_0,\{x'_{i}\}_i,y)$ for $x'_{i}$ uniformly generated in $[0,x_0)$. Then $pk$ and $pk'$ are indistinguishable under the Decisional-Approximate-GCD assumption. $[7]$
+\end{lemma}
+
+\noindent\textit{Proof.} Assume that there exists a polynomial time algorithm $\beta$ capable of distinguishing $pk$ and $pk'$ with advantage $\epsilon$. Define,
+
+\begin{equation*}
+    pk^{(r)} = (x_0, \{x_1^{(r)}, ... , x_r^{(r)}, x_{r+1}^{(r)}, ... , x_\tau^{(r)}\}, y)
+\end{equation*}
+
+\noindent where $x_1^{(r)}, ... , x_r^{(r)} \leftarrow [0, x_0)$ and $x_{r+1}^{(r)}, ... , x_\tau^{(r)} \leftarrow D^\rho_{p,q_0}$. Then, by our assumption $\beta$ can distinguish $pk^{(0)} = pk$ from $pk^{(\tau)} = pk'$ with advantage $\epsilon$. By the hybrid argument (Lemma 2.1.4), we conclude that there must exist an $r$ such that $\beta$ distinguishes $pk^{(r)}$ and $pk^{(r+1)}$ with advantage $\epsilon / \tau$. However, setting $x_r^{(r)}$ to be the Decisional-Approximate-GCD challenge, we conclude that $\beta$ can solve the Decisional-Approximate-GCD problem with advantage $\epsilon / \tau$. $\blacksquare$ 
+\end{document}

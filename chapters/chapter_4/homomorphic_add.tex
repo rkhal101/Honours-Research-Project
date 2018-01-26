@@ -1,0 +1,22 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+\noindent Let $c_1$ and $c_2$ be two Type-I ciphertexts with noise length $(\rho,\rho^*)$. Then,
+
+\begin{equation*}
+    c_1 = r_1 + (m_1 + 2r^*_1) \cdot (p-1)/2 + q_1 \cdot p^2
+\end{equation*}
+\begin{equation*}
+    c_2 = r_2 + (m_2 + 2r^*_2) \cdot (p-1)/2 + q2 \cdot p^2
+\end{equation*}
+
+\noindent with noises $r_1$ and $r_2$ of respective bit length $\rho$, and $r^*_1$ and $r^*_2$ of respective bit length $\rho^*$.
+
+\noindent Homomorphic addition is done as follows.
+
+\begin{equation*}
+    c_1 + c_2 = r_3 + (m_1 + m_2 + 2r^*_3) \cdot (p-1)/2 + q_3 \cdot p^2
+\end{equation*}
+
+\noindent for integers $r_3 = r_1 + r_2$ , $r^*_3 = r^*_1 + r^*_2$ and $q_3 = q_1 + q_2$, with $log_2|r_3| \leq \rho + 1$ and $log_2|r^*_3| \leq \rho^* + 1$.
+\end{document}

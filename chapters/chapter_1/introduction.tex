@@ -1,0 +1,25 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+The demand for privacy of digital data has increased dramatically over the last decade. Countless measures have been taken to securely store and access data. Methods such as strong encryption have allowed individuals to store massive amounts of encrypted information on the cloud without fear of an adversary recovering any useful information from that data. However, the problem with encrypted data is that sooner or later you need to decrypt it. Any operations, such as querying the data, have to be processed on the plaintext. Fully Homomorphic Encryption (FHE), a still mostly theoretical but very promising advancement, could completely change that!
+
+The idea of homomorphic encryption was first introduced in 1978 by Rivest, Adleman and Dertouzos in their paper "On Data Banks and Privacy Homomorphisms". The paper introduced the idea of privacy homomorphisms which they defined as "encryption functions which permit encrypted data to be operated on without preliminary decryption of the operands, for many sets of interesting operations" [1]. Following that paper, many encryption schemes were developed that are additively homomorphic, multiplicatively homomorphic and Some What Homomorphic Encryption (SWHE) schemes which only allowed a limited number of additions and multiplications. It was not until 2009 that Craig Gentry implemented the first FHE scheme that was able to perform arbitrarily many additive and multiplicative operations on Ideal lattices [2]. Gentry's contribution not only proved the possibility of implementing a fully homomorphic encryption scheme but also laid a solid groundwork for recent developments in this field, which included FHE over the integers, FHE using Learning with Errors (LWE) and FHE using Hidden Ideal Lattices.
+
+This report is organized as follows. Section 2 cover the basic mathematical definitions and concepts that will be required for the proper understanding of the rest of this report. Section 3 covers public key encryption and FHE. Section 4 goes into depth on one of the FHE schemes, namely, Scale Invariant Fully Homomorphic Encryption over the Integers and provides a proof of correctness and semantic security. 
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

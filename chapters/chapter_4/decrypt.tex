@@ -1,0 +1,23 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+\noindent In order to complete our proof of correctness we need to ensure that the decryption of a ciphertext returns its corresponding plaintext. This is shown as follows. \\
+
+\noindent In previous sections we have shown that the output ciphertext of encryption, homomorphic addition and homomorphic multiplication is of Type I:
+\begin{equation*}
+    c = r + (m + 2 r^*) \cdot (p-1)/2 + q \cdot p^2 
+\end{equation*}
+
+\noindent where $m$ is our original plaintext. Applying the decryption procedure, we get:
+\begin{equation*}
+    \begin{split}
+        m &\leftarrow ((2c) \mod p) \mod 2 \\
+          &\leftarrow (2(r + (m + 2r^*) \cdot (p-1)/2 + q \cdot p^2) \mod p) \mod 2 \qquad \qquad \qquad \qquad \\
+          &\leftarrow ((2r + m \cdot p - m + 2r^*p - 2r^* + 2 q\cdot p^2) \mod p) \mod 2 \\
+          &\leftarrow (-m \mod p) \mod 2 \\
+          &\leftarrow (m \mod p) \mod 2 \\
+    \end{split}
+\end{equation*}
+
+\noindent This concludes our proof of correctness.
+\end{document}

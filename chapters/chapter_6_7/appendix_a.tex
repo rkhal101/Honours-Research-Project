@@ -1,0 +1,34 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\noindent We want to prove that $|r^*|$ $\leq$ $2^{\rho' - \eta + 3}$, i.e. we want to prove: $-2^{\rho' - \eta + 3} \leq r^* \leq 2^{\rho' - \eta + 3}$. We have: 
+
+\begin{equation*}
+    r^* = r \cdot (2^\eta / p^2) - c \cdot \epsilon + \delta_1 - m \cdot (2^\eta / 2p^2)
+\end{equation*}
+
+\noindent\underline{$r^* \leq 2^{\rho' - \eta + 3}:$}
+\begin{flalign*}
+r^* &= r \cdot (2^\eta / p^2) - c \cdot \epsilon + \delta_1 - m \cdot (2^\eta / 2p^2) &&\\ 
+    &\leq r \cdot (2^\eta / p^2) + \delta_1 \\
+    &\leq 2^{\rho'} \cdot 2^\eta / 2^{2\eta-2} + \Theta/2  \qquad \qquad \qquad \qquad \qquad \qquad \quad (\text{since } p \in [2^{\eta - 1}, 2^\eta - 1])\\
+    &\leq 2^{\rho' - \eta + 2} + 2^{\rho' - \eta -\rho_1 - 5} \qquad \qquad \qquad \qquad \qquad \quad (\text{since } \rho' = \eta + \rho_1 + log_2\Theta + 4) \\
+    &\leq 2^{\rho' - \eta + 2}(1 + 2^{-\rho_1 -7})\\
+    &\leq 2^{\rho' - \eta + 2}(2)\\
+    &= 2^{\rho' - \eta + 3}
+\end{flalign*}
+
+\noindent\underline{$-2^{\rho' - \eta + 3} \leq r^*:$}
+\begin{flalign*}
+r^* &= r \cdot (2^\eta / p^2) - c \cdot \epsilon + \delta_1 - m \cdot (2^\eta / 2p^2) &&\\ 
+    &\geq - m \cdot (2^\eta / 2p^2) - c \cdot \epsilon \\
+    &\geq - m \cdot (2^\eta/2p^2) - 2^\kappa \cdot 2^{-\kappa}\\
+    &\geq -1 \cdot 2^{-\eta - 1} - 1\\
+    &\geq - 2^{\rho'-\eta+3}
+\end{flalign*}
+
+\noindent Note that the other bounds stated in this paper can be proved in a similar fashion.
+
+
+\end{document}

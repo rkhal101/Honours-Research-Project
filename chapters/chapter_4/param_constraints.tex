@@ -1,0 +1,46 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+The parameters used in this scheme are as follows. 
+
+\begin{center}
+\captionof{table}{List of Parameters [3]} 
+\begin{tabular}{ |c|c| } 
+ \hline
+ \bf{Symbol} & \bf{Quantity} \\
+ \hline
+ $\lambda$ & Security parameter \\
+ \hline
+ $\gamma$ & Bit-length of integers in the public key \\
+ \hline
+ $\eta$ & Bit-length of private key \\ 
+ \hline
+ $\rho$ & Bit-length of the noise \\ 
+ \hline
+ $\tau$ & Number of integers in the public key \\
+ \hline
+ $\rho'$ & Secondary noise parameter used for encryption \\
+ \hline 
+ $L$ & Multiplicative depth of the circuit \\
+ \hline
+ $\Theta$ & Asymptotic tight bound \\
+ \hline
+ $\Omega$ & Asymptotic lower bound \\
+ \hline
+ $\omega$ & Weaker Asymptotic lower bound \\
+ \hline
+\end{tabular}
+\end{center}
+
+\noindent The parameters of this scheme must meet the following constraints $[7]$:
+
+\begin{enumerate}
+    \item $\rho = \Omega(\lambda)$, protects against brute force attacks on the noise,
+    \item $\eta \geq \rho + \mathcal{O}(L \cdot log \lambda)$,
+    \item $\gamma = \omega(\eta^2 \cdot log\lambda)$, thwarts lattice-based attacks,
+    \item $\Theta^2 = \gamma \cdot \omega(log \lambda)$, avoids lattice attacks on the subset sum,
+    \item $\tau \geq \gamma + 2\lambda$, allows use of Leftover Hash Lemma.
+\end{enumerate}
+
+\end{document}

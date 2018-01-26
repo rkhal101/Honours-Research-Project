@@ -1,0 +1,10 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+A homomorphic encryption scheme can be either symmetric or asymmetric. For the purpose of this report, we'll focus only on public key (asymmetric) homomorphic encryption.
+
+A FHE scheme is made up of the conventional algorithms required in a public key encryption scheme (Refer to Section 3.1 for review): key generation, encryption and decryption. In addition to these algorithms, a homomorphic encryption scheme requires an $Evaluate$ algorithm. This algorithm takes as input the public key $pk$, a circuit $C$ (combinations of AND and XOR gates) and a tuple of ciphertext $(c_1,...,c_t)$ which are used as the inputs to $C$. The output of the $Evaluate$ algorithm is a ciphertext $c$ such that the decryption of $c$ under the secret key outputs $m = (m_1,...,m_t)$ where $c_i$ is the corresponding ciphertext of the plaintext $m_i$.
+
+As mentioned before, a FHE scheme allows arbitrarily many computations on the ciphertext. A relation of that is called a leveled fully homomorphic encryption scheme, where circuits can be evaluated only up to a fixed depth. 
+
+\end{document}

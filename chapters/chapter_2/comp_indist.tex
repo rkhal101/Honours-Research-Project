@@ -1,0 +1,47 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+We denote the class of probabilistic polynomial time algorithms by PPT.
+
+\begin{defn}[Probabilistic Polynomial Time Algorithm]
+A probabilistic polynomial time algorithm is an algorithm that is randomized and runs in polynomial time. $[12]$
+\end{defn}
+
+\begin{defn}[Probability Ensemble]
+Let I be a countable index set. An ensemble indexed by I is a sequence of random variables indexed by I. Namely, any $X = \{X_i\}_{i \in I}$, where each $X_i$ is a random variable, is an ensemble indexed by I. $[9]$
+\end{defn}
+
+\begin{defn}[Computational Indistinguishability]
+Two ensembles, $X \myeq \{X_n\}_{n \in \mathbb{N}}$ and $Y \myeq \{Y_n\}_{n \in \mathbb{N}}$ are computationally indistinguishable if for all non-uniform PPT algorithms $D$ there exists a negligible function $\epsilon (n)$ such that $\forall n \in \mathbb{N}$ 
+
+\begin{equation*}
+    |Pr[D(X_n)=1]-Pr[D(Y_n)=1]|< \epsilon (n)
+\end{equation*}
+
+\noindent In other words, two (ensembles of) probability distributions are computationally indistinguishable if no efficient distinguisher $D$ can tell them apart better than with a negligible advantage over random guessing. $[10]$
+\end{defn}
+
+\begin{lemma}[The Hybrid Lemma]
+Let $X^1,X^2,...,X^m$ be a sequence of probability distributions. Assume that there exists $D \in PPT$ which distinguishes $X^1$ and $X^m$ with probability $\epsilon$. Then there exists some $i \in [1,...,m-1]$ such that $D$ distinguishes $X^i$ and $X^{i+1}$ with probability $\epsilon/m$. $[10]$ 
+\end{lemma}
+
+\noindent\it{Proof}. Let $D \in PPT$ such that $D$ is capable of distinguishing $X^1$ and $X^m$ with probability $\epsilon$, i.e,
+\begin{equation*}
+    |Pr[D(X^1)=1]-Pr[D(X^m)=1]|> \epsilon
+\end{equation*}
+
+\noindent Let $w_i=Pr[D(X^i)=1]$. Then, by assumption $|w_1-w_m|>\epsilon$. Therefore,
+\begin{equation*}
+\begin{split}
+    |w_1-w_m| &= |w_1 - w_2 + w_2 - w_3 + ... + w_{m-1} - w_m| \\
+              &\leq |w_1-w_2|+|w_2-w_3|+...+|w_{m-1}-w_m|
+\end{split}
+\end{equation*}
+
+\noindent using the $\triangle$-inequality. Since
+\begin{equation*}
+    |w_1-w_m|> \epsilon \implies |w_1-w_2|+|w_2-w_3|+...+|w_{m-1}-w_m| > \epsilon
+\end{equation*}
+
+\noindent Therefore, there exists $i$ such that $|w_i-w_{i+1}|>\epsilon/m$, i.e. there exists $i$ such that $D$ distinguishes $X^i$ and $X^{i+1}$ with probability $\epsilon/m$ (otherwise the sum would be less than $\epsilon$). $\blacksquare$
+\end{document}

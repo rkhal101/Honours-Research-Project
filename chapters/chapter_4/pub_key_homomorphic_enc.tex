@@ -1,0 +1,38 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+\noindent The scale invariant FHE scheme was introduced by [7] and described as follows. \\
+
+\begin{addmargin}[1em]{2em}% 1em left, 2em right
+For a specific $\eta$-bit odd integer $p$ and an integer $q_0 \in [0,2^\gamma/p^2)$, we define the set:
+
+\begin{equation*}
+    D^\rho_{p,q_0} = \{q \cdot p^2 + r : q \in \mathbb{Z} \cap [0,q_0), r \in \mathbb{Z} \cap (-2^\rho, 2^\rho)\}
+\end{equation*}
+
+\begin{itemize}
+    \item $KeyGen(1^\lambda)$: Generate an odd $\eta$-bit integer $p$ and a $\gamma$-bit integer $x_0=q_0 \cdot p^2 + r_0$ with $r_0 \leftarrow (-2^\rho, 2^\rho) \cap \mathbb{Z}$ and $q_0 \leftarrow [0, 2^\gamma / p^2) \cap \mathbb{Z}$. Let $x_i \leftarrow D^\rho_{p,{q_0}}$ for $1 \leq i \leq \tau$. Let also $y' \leftarrow D^\rho_{p,{q_0}}$ and $y = y' + (p-1)/2.$
+    Let $\vec z$ be a vector of $\theta$ numbers with $\kappa = 2\gamma + 2$ bits of precision after the binary point, and let $\vec s$ be a vector of $\theta$ bits such that
+    \begin{equation*}
+        2^\eta / p^2 = <\vec s, \vec z> + \epsilon \mod 2^\eta
+    \end{equation*}
+    with $|\epsilon| \leq 2^{-\kappa}$. Now define
+    \begin{equation*}
+        \vec \sigma = \vec q \cdot p^2 + \vec r + \lfloor PowersofTwo_\eta(\vec s) \cdot p/2^{\eta + 1} \rceil,
+    \end{equation*}
+    where the components of $\vec q$ (resp. $\vec r$) are randomly chosen from $\mathbb{Z} \cap [0,q_0)$ (resp. $\mathbb{Z } \cap (-2^\rho, 2^\rho)$). \\
+    The secret key is $sk = \{p\}$ and the public key is $pk = \{x_0,x_1,...,x_\tau, y, \vec \sigma, \vec z\}$.
+    \item $Encrypt(pk, m \in \{0,1\})$: Choose a random subset $S \subset \{1,...,\tau\}$ and output 
+    \begin{equation*}
+        c \leftarrow \left[m \cdot y + \sum_{i \in S}{x_i}\right]_{x_0}.
+    \end{equation*}
+    ($[z]_{x_0}$ represents $z \mod x_0$).
+    \item $Add(pk,c_1,c_2)$: Output $c \leftarrow c_1 + c_2 \mod x_0$.
+    \item $Convert(pk,c)$: Output $c' \leftarrow 2 \cdot \left< \vec \sigma, BitDecomp_\eta(\vec c) \right>$ where $\vec c = \left(\lfloor c \cdot z_i \rceil \mod 2^\eta \right)_{1 \leq i \leq \theta} $.
+    \item $Mult(pk,c_1,c_2)$: Output $c' \leftarrow Convert(pk,2 \cdot c_1 \cdot c_2) \mod x_0$.
+    \item $Decrypt(sk,c)$: Output $m \leftarrow ((2c) \mod p) \mod 2$.
+\end{itemize}
+\end{addmargin}
+
+\noindent Since the noise grows linearly with the number of levels, the above described scheme is a leveled fully homomorphic encryption scheme. In order to obtain a pure fully homomorphic encryption scheme, Gentry's bootstrapping technique can be applied.
+\end{document}

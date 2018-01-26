@@ -1,0 +1,60 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+Encryption schemes are usually composed of a three tuple of $PPT$ algorithms, namely, key generation, encryption and decryption denoted by (KeyGen, Encrypt, Decrypt).
+
+\begin{defn}
+Let $M$ represent the message space, and let $\ell$ be the security parameter. A public key encryption scheme $\varepsilon$ on $M$ is a three tuple $(KeyGen, Encrypt, Decrypt) \in PPT$ satisfying the following functionalities:
+
+\begin{itemize}
+    \item $KeyGen_\varepsilon(1^\ell)$: The key generation algorithm takes as input the security parameter $1^\ell$ and outputs a public key, secret key pair $(pk,sk)$.
+    \item $Encrypt_\varepsilon(pk,m)$: The encryption algorithm takes as input the public key $pk$ and a message $m \in M$ and outputs the corresponding ciphertext $c \in C$ where $C$ is the ciphertext space. 
+    \item $Decrypt_\varepsilon(sk,c)$: The decryption algorithm takes as input the ciphertext $c \in C$ and secret key $sk$ and outputs the corresponding message $m \in M$.
+\end{itemize}
+
+\end{defn}
+
+\noindent A public key encryption scheme must satisfy two requirements:
+
+\begin{itemize}
+    \item \textbf{Correctness}: $\forall m \in M$, the $Pr[(pk,sk) \leftarrow KeyGen(1^\ell): Dec(sk, Enc(pk,m))=m]=1$. In other words, a scheme is said to be correct if the decryption of an encrypted message under the corresponding keys returns the original message.
+    \item \textbf{Semantic Security}: We define the notion of semantic security in terms of a game between a challenger $C$ and an Adversary $A$:\\
+    \textit{\underline{Step 1}}: The challenger generates a random key pair $(pk,sk) \leftarrow KeyGen_\epsilon(1^\ell)$.
+    
+    \textit{\underline{Step 2}}: The adversary A sends $m_0$, $m_1$ to the challenger. 
+    
+    \textit{\underline{Step 3}}: The challenger generates a random bit, $b \leftarrow \{0,1\}$, and generates the ciphertext $c \leftarrow Enc(pk,m_b)$. 
+    
+    \textit{\underline{Step 4}}: The adversary outputs a $b' \in \{0,1\}$.
+
+\noindent The advantage of the adversary A is
+defined as follows:
+
+\begin{equation*}
+    Adv_A[\varepsilon] \myeq |Pr[b'=b]-1/2|
+\end{equation*}
+
+The encryption scheme $\varepsilon$ is said to be semantically secure if for all probabilistic polynomial
+time adversaries $A$, the advantage $Adv_A[\varepsilon]$ is negligible.
+\end{itemize}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,198 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+\usepackage{tocloft}
+\usepackage{bm}
+\usepackage{tcolorbox}
+\usepackage{covington,tocloft}
+\usepackage{graphics}
+\usepackage{amsthm,amsmath}
+\usepackage[font=small,compatibility=false]{caption}
+\usepackage{amsfonts}
+\usepackage{scrextend}
+\usepackage{MnSymbol}%
+\usepackage{wasysym}%
+% \newtheorem{dummy}{Dummy}[section]
+\newcounter{dummy} \numberwithin{dummy}{subsection}
+\newtheorem{thm}[dummy]{Theorem}
+\newtheorem{defn}[dummy]{Definition}
+\newtheorem{prop}[dummy]{Proposition}
+\newtheorem{lemma}[dummy]{Lemma}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\newcommand\myeq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{float}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage[labelfont=bf]{caption}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\floatstyle{plain}
+\newfloat{example}{thp}{loc}
+\floatname{example}{Example}
+\def\bsq#1{%both single quotes
+\lq{#1}\rq}
+\usepackage{acronym}
+\lstset{frame=tb,
+  language=html,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\usepackage{subfiles}
+
+\usepackage{blindtext}
+
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
+
+\begin{document}
+
+
+\subfile{chapters/chapter_0/title.tex}
+\newpage
+
+\tableofcontents
+\newpage
+
+%----------------------CHAPTER 1---------------------------------%
+\section{Introduction}
+
+\subfile{chapters/chapter_1/introduction.tex}
+\newpage
+
+%---------------------CHAPTER 2----------------------------------%
+\section{Preliminaries}
+
+%\subsection{Introduction}
+\subfile{chapters/chapter_2/introduction.tex}
+
+\subsection{Euclidean Inner Product}
+\subfile{chapters/chapter_2/inner_product.tex}
+
+\subsection{Integer Functions}
+\subfile{chapters/chapter_2/integer_functions.tex}
+
+\subsection{Computational Indistinguishability}
+\subfile{chapters/chapter_2/comp_indist.tex}
+
+\subsection{Leftover Hash Lemma}
+\subfile{chapters/chapter_2/leftover_hash.tex}
+
+
+%-------------------CHAPTER 3------------------------------------%
+\section{Encryption}
+
+%\subsection{Introduction}
+\subfile{chapters/chapter_3/introduction.tex}
+
+\subsection{Public Key Encryption}
+\subfile{chapters/chapter_3/public_key_encryption.tex}
+
+\subsection{Homomorphic Encryption}
+\subfile{chapters/chapter_3/homomorphic_encryption.tex}
+
+\subsubsection{Alice's Jewelry Store}
+\subfile{chapters/chapter_3/jewelry_store.tex}
+
+\subsubsection{Homomorphic Encryption}
+\subfile{chapters/chapter_3/sub_homomorphic_encryption.tex}
+
+\subsubsection{How to Construct a FHE Scheme}
+\subfile{chapters/chapter_3/construct_fhe_scheme.tex}
+
+
+%-------------------CHAPTER 4------------------------------------%
+\section{Scale Invariant DGHV Scheme}
+
+%\subsection{Introduction}
+\subfile{chapters/chapter_4/introduction.tex}
+
+\subsection{Constraints on the Parameters}
+\subfile{chapters/chapter_4/param_constraints.tex}
+
+\subsection{Public-Key Leveled Fully Homomorphic Encryption}
+\subfile{chapters/chapter_4/pub_key_homomorphic_enc.tex}
+
+\subsection{Proof of Correctness}
+\subfile{chapters/chapter_4/proof_of_correctness.tex}
+
+\subsubsection{Homomorphic Addition}
+\subfile{chapters/chapter_4/homomorphic_add.tex}
+
+\subsubsection{Homomorphic Multiplication}
+\subfile{chapters/chapter_4/homomorphic_multip.tex}
+
+\subsubsection{Convert Procedure}
+\subfile{chapters/chapter_4/convert_proc.tex}
+
+\subsubsection{Decrypt}
+\subfile{chapters/chapter_4/decrypt.tex}
+
+\subsection{Proof of Semantic Security}
+\subfile{chapters/chapter_4/semantic_sec.tex}
+
+
+
+
+%------------------REFERENCES----------------------------------%
+\newpage
+\thispagestyle{empty}
+\section{References}
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+
+\bibitem{latexcompanion} Rivest, R. L., Adleman, L. \& Dertouzos, M. L. (1978). On Data Banks and Privacy Homomorphisms. \textit{Foundations of Secure Computation}, Academia Press, 169-179. 
+
+\bibitem{2} C. Gentry, \textit{A Fully Homomorphic Encryption Scheme}, Stanford University PhD thesis, 2009,
+http://crypto.stanford.edu/craig/craig-thesis.pdf
+
+\bibitem{3} Dasari, V., Palaparthy, A., \& Peddinti, K. (2014). \textit{Analysis of Different Fully Homomorphic Encryption Schemes}. Retrieved from http://ece.gmu.edu/coursewebpages/ECE/ECE646/F15/project/F15\allowbreak \_Project\_Resources/F14\_Homomorphic\_Encryption\_report.pdf
+
+\bibitem{4} Shoup, V. \& Puniya, P. (2007). \textit{Advanced Cryptography: Lecture 8}. Lecture, https://cs.nyu.edu/courses/spring07/G22.3220-001/lec8.pdf.
+
+\bibitem{5} Gentry, Craig. (2010) \textit{Computing arbitrary functions of encrypted data}. Communications of the ACM 53.3: 97-105.
+
+\bibitem{6} Van Dijk, Marten, et al. (2010). \textit{Fully homomorphic encryption over the integers}. Advances in cryptology–EUROCRYPT 2010. Springer Berlin Heidelberg. 24-43.
+
+\bibitem{7} Coron, Jean-Sébastien; Lepoint, Tancrède; Tibouchi, Mehdi (2014). \textit{Scale-Invariant Fully Homomorphic Encryption over the Integers}. PKC 2014. Springer.
+
+\bibitem{8} CHEN, W. (1997). \textit{Linear Algebra} (pp. 1-16). Retrieved from https://rutherglen.science.mq.edu.au/wchen/lnlafolder/la09.pdf
+
+\bibitem{9} Goldreich, O. (2003). \textit{Foundations of cryptography}. Cambridge, UK: Cambridge University Press.
+
+\bibitem{10} Shelat, A. (2007). \textit{Indistinguishability and Pseudo-Randomness}. Retrieved from https://www.cs.virginia.edu/~shelat/651/www/chap3.pdf
+
+\bibitem{11} Merca, M. (2011). Inequalities and Identities Involving Sums of Integer Functions. \textit{Journal Of Integer Sequences}. Retrieved from https://cs.uwaterloo.ca/journals/JIS/VOL14/Merca/merca3.html.
+
+\bibitem{12} Saxena, N. (2009). \textit{Computational Security; Symmetric Key Encryption}. Lecture. Retrieved from http://isis.poly.edu/courses/cs6903-s09/Lectures/lecture3.pdf.
+
+\end{thebibliography}
+\newpage
+
+\section{Appendix A: Bound Calculation}
+\subfile{chapters/chapter_6_7/appendix_a.tex}
+
+\section{Appendix B: Proof of Lemma 4.4.3}
+\subfile{chapters/chapter_6_7/appendix_b.tex}
+
+\end{document}

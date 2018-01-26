@@ -1,0 +1,78 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{defn}[Least Integer Function]
+Suppose that $x \in \mathbb{R}$. The least integer function $\lfloor x \rfloor$ is defined as the largest integer not greater than $x$.
+\end{defn}
+
+\begin{defn}[Nearest Integer Function]
+Suppose that $x \in \mathbb{R}$. The nearest integer function $\lfloor x \rceil$ is defined as
+
+\begin{equation*}
+    \lfloor x \rceil = \lfloor x + 1/2 \rfloor.
+\end{equation*}
+\end{defn}
+
+\begin{prop}
+Let $x \in \mathbb{R}$. Then $2\lfloor x/2 \rceil = x+v$ where $|v|\leq 1.$
+\end{prop}
+
+\noindent \it{Proof.} Note that $|v|\leq 1 \iff -1 \leq v \leq 1$. Therefore, it suffices to show that $2\lfloor x/2 \rceil - x \in [-1,1].$
+
+\noindent Suppose that $x \in \mathbb{R}$ such that $x=n+r$ when $n \in \mathbb{Z}$ and $0 \leq r \less 1$. We have two cases to consider.
+
+\bigskip
+\noindent\underline{Case \#1 ($n$ is even)}:
+Since $n$ is even, $\exists k_1 \in \mathbb{Z}$ such that $n=2k_1$. Then,
+\begin{equation*}
+    \begin{split}
+    \begin{aligned}
+        2\lfloor x/2 \rceil - x &= 2\lfloor (n+r)/2 \rceil - x \\
+        &= 2\lfloor (2k_1+r)/2 \rceil -2k_1-r \\
+        &= 2\lfloor k_1+r/2 \rceil - 2k_1 -r \\ 
+        &= 2k_1 - 2k_1 - r \qquad \qquad \qquad \text{   (since } 0 \leq r/2 \less 1/2\text{)} \\
+        &= -r \in (-1,0] \subseteq[-1,1].
+\end{aligned}
+    \end{split}
+\end{equation*}
+
+\bigskip
+\noindent\underline{Case \#2 ($n$ is odd)}:
+Since $n$ is odd, $\exists k_2 \in \mathbb{Z}$ such that $n=2k_2+1$. Then,
+
+\begin{equation*}
+    \begin{split}
+    \begin{aligned}
+        2\lfloor x/2 \rceil - x &= 2\lfloor (n+r)/2 \rceil - x \\
+        &= 2\lfloor (2k_2+1+r)/2 \rceil -2k_2-1-r \\
+        &= 2\lfloor k_2 + 1/2 + r/2 \rceil - 2k_2 - 1 -r \\
+        &= 2(k_2+1)-2k_2 -1-r \\
+        &= 1-r \in (0,1] \subseteq [-1,1].
+\end{aligned}
+    \end{split}
+\end{equation*}
+\bigskip
+\noindent Therefore, $2\lfloor x/2 \rceil = x +v$ where $|v|\leq 1$. $\blacksquare$
+
+\begin{prop}
+Let $x \in \mathbb{R}$. Then $\lfloor x \rceil = x + \epsilon$ when $|\epsilon| \leq 1/2$.
+\end{prop}
+
+\noindent \it{Proof}.
+Note that $|\epsilon| \leq 1/2 \iff -1/2 \leq \epsilon \leq 1/2$. Therefore, it suffices to show that $\lfloor x \rceil - x \in [-1/2, 1/2]$. \\
+Suppose that $x \in \mathbb{R}$ such that $x=n+r$ where $n \in \mathbb{Z}$ and $0 \leq r \less 1$. We have two cases to consider.
+\bigskip
+
+\noindent\underline{Case \#1 ($0 \leq r \less 1/2)$}:\\
+\noindent $\lfloor x \rceil - x = \lfloor n + r \rceil - n - r = n - n -r = -r \in (-1/2,0] \subseteq[-1/2,1/2]$. 
+
+\bigskip
+\noindent\underline{Case \#2 ($1/2 \leq r \less 1$)}:\\
+\noindent $\lfloor x \rceil - x = \lfloor n+r \rceil - n - r = n + 1 - n - r = 1 - r \in (0,1/2] \subseteq[-1/2,1/2]$.
+
+\bigskip
+
+\noindent Therefore, $\lfloor x \rceil = x + \epsilon$ where $|\epsilon| \leq 1/2$. $\blacksquare$
+
+\end{document}

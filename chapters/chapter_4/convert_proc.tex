@@ -1,0 +1,107 @@
+\documentclass[../../main.tex]{subfiles}
+
+\begin{document}
+
+\noindent For this section of the report, assume that initially the two ciphertexts $c_1$ and $c_2$ are Type-I ciphertexts with noise $(\rho_1, log_2\theta$).\\
+
+\noindent We start with a Type-II ciphertext
+\begin{equation*}
+    r + m\cdot (p^2-1)/2 + q \cdot p^2
+\end{equation*}
+
+\noindent with $|r| \leq 2^{\rho'}$ where the noise $\rho'$ is at most $\rho' = \eta + \rho_1 + log_2\theta + 4$ (follows from the result of the previous section). Let $\vec s'= PowersofTwo_\eta(\vec s)$ and $\vec c' = BitDecomp_\eta(\vec c)$. Using
+\begin{equation*}
+    \vec \sigma = p^2\cdot \vec q + \vec r + \lfloor \vec s' \cdot p/{2^{\eta + 1}} \rceil
+\end{equation*} 
+
+\noindent we have:
+\begin{equation*}
+    \begin{split}
+        c' &= 2\left<\vec \sigma, \vec c'\right>\\
+           &= 2\left<p^2\cdot \vec q + \vec r + \lfloor \vec s' \cdot p/2^{\eta + 1} \rceil, \vec c' \right>\\
+           &= 2p^2 \cdot \left<\vec q, \vec c'\right> + 2 <\vec r, \vec c'> + 2\left<\lfloor\vec s' \cdot p/2^{\eta + 1}\rceil, \vec c' \right> \qquad \qquad \qquad (*)
+    \end{split}
+\end{equation*}
+
+\noindent Using Proposition 2.2.3 in Section 2.3 we evaluate,
+\begin{equation*}
+    \begin{split}
+       2\left<\lfloor \vec s' \cdot p/2^{\eta + 1}\rceil, \vec c' \right> &= \left<\vec s' \cdot p/2^\eta + \vec v, \vec c' \right> \qquad \qquad \qquad \qquad \qquad \qquad \\
+       &= \left<\vec s' \cdot p/2^\eta, \vec c' \right> + \left<\vec v,\vec c'\right>\\
+       &= p/2^\eta \cdot <\vec s', \vec c'> + v_2 \qquad \qquad \qquad \qquad \qquad (**)
+    \end{split}
+\end{equation*}
+
+\noindent where $|v_2| \leq \theta \cdot \eta$. Note that, 
+\begin{equation*}
+    \begin{split}
+        <\vec s', \vec c'> &= \left<PowersofTwo_\eta(\vec s), BitDecomp_\eta(\vec c)\right>  \qquad \qquad \qquad \quad\\
+        &= \left<\left(\vec s, 2\cdot \vec s, ..., 2^{\eta-1}\cdot \vec s\right), \left(\vec c_0, ..., \vec c_{\eta-1}\right)\right>
+    \end{split}
+\end{equation*}
+
+\noindent where $\vec c \mod 2^\eta = \sum_{i=0}^{\eta-1}{\vec c_i \cdot 2^i}$. Therefore, $<\vec s', \vec c'> = <\vec s, \vec c> \mod 2^\eta = <\vec s, \vec c> + q_2 \cdot 2^\eta$ for some $q_2 \in \mathbb{Z}$. Furthermore, 
+\begin{equation*}
+    <\vec s, \vec c> = \left<(s_1,s_2,...,s_\theta), (\lfloor c \cdot z_i\rceil \mod 2^\eta)_{1 \leq i \leq \theta} \right> = \sum_{i=1}^{\theta}{(s_i \cdot \lfloor c \cdot z_i \rceil) + \triangle \cdot 2^\eta}
+\end{equation*}
+
+\noindent for some $\triangle \in \mathbb{Z}$. Using Proposition 2.2.4, we evaluate
+\begin{equation*}
+    \begin{split}
+        <\vec s, \vec c> &= \sum^{\theta}_{i=1}{s_i \cdot (c \cdot z_i + \pi_i)+ \triangle \cdot 2^\eta} \qquad \qquad \qquad \qquad \qquad \qquad  \qquad \qquad \\
+        &= \sum^{\theta}_{i=1}{(s_i \cdot c \cdot z_i)} + \sum^{\theta}_{i=1}{(s_i \cdot \pi_i)} + \triangle \cdot 2^\eta \\
+        &= \sum^{\theta}_{i=1}{(s_i \cdot c \cdot z_i) + \delta_1 + \triangle \cdot 2^\eta} \\
+        &= c <\vec s, \vec z> + \delta_1 + \triangle \cdot 2^\eta \\
+    \end{split}
+\end{equation*}
+
+\noindent where $|\delta_1|\leq \theta/2$. Since $2^\eta/p^2 = <\vec s, \vec z> + \epsilon \mod 2^\eta$, we have $<\vec s, \vec z>= 2^\eta/p^2-\epsilon-\mu \cdot 2^\eta$ for some $\mu \in \mathbb{Z}$. Also, using $c=q\cdot p^2 + m \cdot (p^2-1)/2 + r$ as our Type II ciphertext we have:
+\begin{equation*}
+    \begin{split}
+        <\vec s, \vec c> &= c \cdot (2^\eta/p^2 - \epsilon - \mu \cdot 2^\eta) + \delta_1 + \triangle \cdot 2^\eta \\
+        &= c \cdot (2^\eta/p^2) - c \cdot \epsilon - c \cdot \mu \cdot 2^\eta + \delta_1 + \triangle \cdot 2^\eta \\
+        &= c \cdot (2^\eta/p^2) - c \cdot \epsilon + \delta_1 + (\triangle - c \cdot \mu )\cdot 2^\eta\\
+        &= (q \cdot p^2 + m \cdot (p^2-1)/2 + r) \cdot (2^\eta/p^2) - c \cdot \epsilon + \delta_1 + (\triangle - c \cdot \mu) \cdot 2^\eta \\
+        &= q \cdot 2^\eta + m \cdot 2^{\eta -1} - m \cdot (2^\eta/2p^2) + r \cdot (2^\eta /p^2) - c \cdot \epsilon + \delta_1 + (\triangle - c \cdot \mu)\cdot 2^\eta \\
+        &= (q + (\triangle - c \cdot \mu)) \cdot 2^\eta + m \cdot 2^{\eta - 1} + (r \cdot (2^\eta/p^2) - c \cdot \epsilon + \delta_1 - m \cdot (2^\eta/2p^2))\\
+        &= q_1 \cdot 2^\eta + m \cdot 2^{\eta -1} + r^*\\
+    \end{split}
+\end{equation*}
+
+\noindent for some $r^* \in Z$, with $|r^*| \leq 2^{\rho'-\eta+3}$ (See Appendix A for bound calculation). We input this result into $(**)$ to get:
+\begin{equation*}
+    \begin{split}
+        2\left<\lfloor \vec s' \cdot p/2^{\eta+1}\rceil, \vec c' \right> &= \frac{p}{2^\eta} \cdot ((q_1 \cdot 2^\eta + m \cdot 2^{\eta -1} + r^*) + q_2 \cdot 2^\eta) + v_2 \qquad \qquad \qquad \\
+        &= \frac{p}{2^\eta} \cdot ((q_1 + q_2) \cdot 2^\eta + m \cdot 2^{\eta-1} + r^*) + v_2 \\
+        &= (q_1 + q_2) \cdot p + m \cdot \frac{p}{2} + \frac{p}{2^\eta} \cdot r^* + v_2 \\
+        &= q_3p + m \cdot \frac{p}{2} + \frac{p}{2^\eta} \cdot r^* + v_2 \\
+    \end{split}
+\end{equation*}
+
+\noindent where $|q_3| \leq \theta$. This can be written as,
+\begin{equation*}
+    \begin{split}
+        2\left<\lfloor \vec s' \cdot p/2^{\eta +1} \rceil, \vec c'\right> &= q_3p - q_3 + q_3 + m \cdot \frac{p}{2} - \frac{m}{2} + \frac{m}{2} + \frac{p}{2^\eta} \cdot r^* + v_2 \qquad \qquad \qquad \\
+        &= (2q_3 + m) \cdot \frac{p-1}{2} + \left(q_3 + \frac{m}{2} + \frac{p}{2^\eta} \cdot r^* + v_2 \right) \\
+        &= (2q_3 + m) \cdot \frac{p-1}{2} + r^*_2 \\
+    \end{split}
+\end{equation*}
+
+\noindent where $|r^*_2| \leq 2^{\rho' - \eta + 4}$. Therefore, we input this result into $(*)$ to get:
+\begin{equation*}
+    \begin{split}
+        c' &= 2p^2 \cdot <\vec q, \vec c'> + 2<\vec r, \vec c'> + (2q_3 + m) \cdot \frac{p-1}{2} + r^*_2 \qquad \qquad \qquad \qquad \qquad \qquad\\
+           &= 2<\vec q, \vec c'> \cdot p^2 + (2q_3+m) \cdot \frac{p-1}{2} + (2<\vec r, \vec c'> + r^*_2) \\
+           &= 2q'' \cdot p^2 + (2q_3+m) \cdot \frac{p-1}{2} + r'\\
+           &= r' + (m + 2q_3) \cdot \frac{p-1}{2} + (2q'') \cdot p^2 \\
+    \end{split}
+\end{equation*}
+
+\noindent where $|r^*_1| \leq |r^*_2| + \eta \theta 2^{\rho + 1} \leq 2^{\rho' - \eta + 4} + \eta \theta 2^{\rho + 1} \leq 2^{\rho' - \eta + 5}$.\\
+
+\noindent Therefore, we converted the Type II ciphertext back to a Type I ciphertext with noises $r'$ and $q_3$ with noise size $(\rho' - \eta + 5, log_2\theta)$.
+\end{document}
+
+
+
+
